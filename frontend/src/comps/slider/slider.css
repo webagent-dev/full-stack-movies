@@ -1,0 +1,41 @@
+.slider__container{
+    width: 100%;
+    margin-top: 10px;
+}
+.other__container{
+        position: relative;
+}
+.arrow__container{
+     width: 50px;
+         background: linear-gradient(to top, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0.5) 50%);
+            height: 100%;
+                position: absolute;
+                    top: 0;
+                  bottom: 0;
+                 margin: auto;
+                 display: flex;
+                 align-items: center;
+                 justify-content: center;
+    z-index: 99;
+    transition: all 1s ease;
+}
+.arrow{
+
+     font-size: 50px;
+     color: white;
+     cursor: pointer;
+}
+.left{
+    left: 0;
+}
+.right{
+    right: 0;
+}
+.slider__wrapper{
+    margin-left: 50px;
+    display: flex;
+    margin-right: 5px;
+    width: max-content;
+    /* transform: translateX(-350px); */
+    transition: all 1s ease;
+}

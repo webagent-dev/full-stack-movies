@@ -1,0 +1,64 @@
+.navbar__container{
+width: 100%;
+background: linear-gradient(to top, transparent 0%, rgba(0,0, 0,0.5)  50%);
+color: white;
+font-size: 25px;
+font-family: monospace;
+font-weight: 700;
+position: fixed;
+z-index: 999;
+transition: all 1s linear;
+}
+.colored{
+    background: black;
+}
+.wrapper{
+    height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0px 50px;
+    position: relative;
+}
+.first__part{
+    display: flex;
+    align-items: center;
+}
+.logo{
+    height: 25px;
+    margin-right: 40px;
+}
+.links{
+    margin-right: 20px;
+}
+.second__part{
+    display: flex;
+    align-items: center;
+}
+.arrow{
+    cursor: pointer;
+}
+.option{
+    /* display: none; */
+    background: lightgray;
+    top: 0;
+    right: 0;
+    font-size: 14px;
+    /* padding: 5px 15px; */
+    border-radius: 5px;
+    margin-left: 10px;
+    transition: all 1s linear;
+}
+.setting{
+    padding: 5px 10px;
+    color: black;
+    font-family: cursive;
+    cursor: pointer;
+}
+.setting:hover{
+    background: black;
+    color: whitesmoke;
+}
+.arrow:hover .option{
+    display: block;
+}
