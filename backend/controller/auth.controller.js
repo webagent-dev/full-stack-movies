@@ -16,9 +16,9 @@ const loginUser = async (req, res) => {
         !User && res.status(401).json('wrong email and password')
         const passcode = await User.getDecode(req.body.password)
         !passcode && res.status(401).json('wrong email and password')
-
-        const { passwords, ...other } = User._doc
-        res.status(200).json(...other)
+        const accessToken = User.createToken()
+        const { password, ...other } = User._doc
+        res.status(200).json({ ...other, accessToken })
     } catch (err) {
         console.log(err)
     }
