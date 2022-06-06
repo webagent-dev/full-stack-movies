@@ -1,9 +1,13 @@
 // create Movies
 const createMovies = async (req, res) => {
-    try {
-        res.status(200) .json('we are creating new movie')
-    } catch (err) {
-        res.status(500).json(err)
+    if (req.user.isAdmin) {
+        try {
+            res.status(200).json('we are creating new movie')
+        } catch (err) {
+            res.status(500).json(err)
+        }
+    } else {
+        res.status(403).json("you can't add movies")
     }
 }
 // get Movies
@@ -24,18 +28,26 @@ const getSingleMovies = async (req, res) => {
 }
 // update Movies
 const updateMovies = async (req, res) => {
-    try {
-              res.status(200) .json('we are updating  movie')
+    if (req.user.isAdmin) {
+         try {
+        
     } catch (err) {
         res.status(500).json(err)
+    }
+    } else {
+        res.status(403).json(" you can't update movies")
     }
 }
 // delete Movies
 const deleteMovies = async (req, res) => {
-    try {
-       res.status(200) .json('we are deleting movie')   
+    if (req.user.isAdmin) {
+          try {
+       res.status(200).json('we are deleting movie')   
     } catch (err) {
         res.status(500).json(err)
+    }
+    } else {
+        res.status(403).json("you can't delete video")
     }
 }
 
