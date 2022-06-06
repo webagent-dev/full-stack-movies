@@ -1,8 +1,10 @@
+const Movie = require('../model/movie.model')
 // create Movies
 const createMovies = async (req, res) => {
     if (req.user.isAdmin) {
         try {
-            res.status(200).json('we are creating new movie')
+            const newMovie = await Movie.create(req.body)
+            res.status(201).json(newMovie)
         } catch (err) {
             res.status(500).json(err)
         }
@@ -10,9 +12,22 @@ const createMovies = async (req, res) => {
         res.status(403).json("you can't add movies")
     }
 }
-// get Movies
+// get  randomly
 const getMovies = async (req, res) => {
+    const type = req.query.type 
+    let listMovie
     try {
+        if (type === "series") {
+            listMovie = await Movie.aggregate([
+                { $match: { isSeries: true } },
+                {$sample: {size: 1}}
+            ])
+        }esle{
+            listMovie = await Movie.aggregate([
+                { $match: { isSeries: false } },
+                {$sample: {size:1}},
+            ])
+        }
           res.status(200) .json('we are getting movie') 
     } catch (err) {
         res.status(500).json(err)
@@ -21,8 +36,9 @@ const getMovies = async (req, res) => {
 // get single Movies
 const getSingleMovies = async (req, res) => {
     try {
-              res.status(200) .json('we are getting single movie')
-    } catch (err) {
+        const movie = await Movie.findById(req.params.id)
+        res.status(200).json(movie)
+    }catch (err){
         res.status(500).json(err)
     }
 }
@@ -30,7 +46,12 @@ const getSingleMovies = async (req, res) => {
 const updateMovies = async (req, res) => {
     if (req.user.isAdmin) {
          try {
-        
+             const updateMovie = await Movie.findByIdAndUpdate(
+                 req.params.id,
+                 { $set: req.body },
+                 { new: true, runValidators: true }
+             )
+             res.status(200).json(updateMovie)
     } catch (err) {
         res.status(500).json(err)
     }
@@ -42,7 +63,8 @@ const updateMovies = async (req, res) => {
 const deleteMovies = async (req, res) => {
     if (req.user.isAdmin) {
           try {
-       res.status(200).json('we are deleting movie')   
+            await Movie.findByIdAndDelete(req.params.id)
+              res.status(200).json('movies deleted')
     } catch (err) {
         res.status(500).json(err)
     }
