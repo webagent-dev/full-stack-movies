@@ -8,6 +8,7 @@ const cors = require('cors')
 const authRouter = require('./router/auth.route')
 const userRouter = require('./router/user.route')
 const movieRouter = require('./router/movie.route')
+const listRouter = require('./router/list.route')
 
 // middleware
 app.use(cors())
@@ -17,6 +18,8 @@ app.use(express.urlencoded({extended: true}))
 app.use('/api/v1/', authRouter)
 app.use('/api/v1/get/', userRouter)
 app.use('/api/v1/', movieRouter)
+app.use('/api/v1/', listRouter)
+
 const start = async () => {
     try {
         await connectToDb('mongodb://localhost/movie-api-test')
