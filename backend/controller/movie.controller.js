@@ -17,20 +17,33 @@ const getMovies = async (req, res) => {
     const type = req.query.type 
     let listMovie
     try {
-        if (type === "series") {
+        if (type === 'series') {
             listMovie = await Movie.aggregate([
                 { $match: { isSeries: true } },
                 {$sample: {size: 1}}
-            ])
-        }esle{
+           ])
+        } else {
             listMovie = await Movie.aggregate([
                 { $match: { isSeries: false } },
-                {$sample: {size:1}},
+                { $sample: {size: 1} }
             ])
-        }
-          res.status(200) .json('we are getting movie') 
+       }
+          res.status(200) .json(listMovie) 
     } catch (err) {
         res.status(500).json(err)
+    }
+}
+//  get all Movies
+const getAllMovies = async (req, res) => {
+    if (req.user.isAdmin) {
+          try {
+         const allMovie =   await Movie.find()
+              res.status(200).json(allMovie.reverse())
+    } catch (err) {
+        res.status(500).json(err)
+    }
+    } else {
+        res.status(403).json("you can't delete video")
     }
 }
 // get single Movies
@@ -74,4 +87,4 @@ const deleteMovies = async (req, res) => {
 }
 
 
-module.exports = { createMovies, getMovies, getSingleMovies, updateMovies, deleteMovies}
+module.exports = { createMovies, getMovies, getSingleMovies, updateMovies, deleteMovies, getAllMovies}
