@@ -6,7 +6,7 @@ function Main({type}) {
         <div className="main__wrapper">
             {   type &&
                       <div className="type__container">
-                          <h2 className="type__category">{type === 'movie' ?  "Movies" : "TV-Series"}</h2>
+                          <h2 className="type__category">{type === 'movies' ?  "Movies" : "Series"}</h2>
                           <select name='genre' id='genre' className='type__select'>
                               <option>Genre</option>
                               <option value="adventure">Adventure</option>
