@@ -25,7 +25,7 @@ const getList = async (req, res) => {
                     {$match:{type:type}, genre: genre}
                     ])
             } else {
-                list = await LList.aggregate([{$sample:{size: 10}}])
+                list = await List.aggregate([{$sample:{size: 10}}])
                 } 
         } else {
             list = await List.aggregate([
