@@ -16,9 +16,15 @@ function Navbar ()  {
                   <Link to='/'>
                       <img className="logo" src='/img/main.png' alt='mark-up-pic' />
                   </Link> 
-            <span className="links">Homepage</span>
-            <span className="links">Series</span>
-            <span className="links">Movies</span>
+<Link to='/' className='link'>
+                      <span className="links">Homepage</span>
+</Link>
+<Link to='/series'  className='link'>
+                      <span className="links">Series</span>
+</Link>
+<Link to='/movies'  className='link'>
+                      <span className="links">Movies</span>
+</Link>
             <span className="links">New and Popular</span>
             <span className="links">My List</span>
             </div>

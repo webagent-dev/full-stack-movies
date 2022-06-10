@@ -31,6 +31,14 @@
 .right{
     right: 0;
 }
+.type__text{
+    color: white;
+    font-size: 30px;
+    font-family: monospace;
+    text-transform: capitalize;
+    padding: 10px 25px;
+    margin-left: 30px;
+}
 .slider__wrapper{
     margin-left: 50px;
     display: flex;

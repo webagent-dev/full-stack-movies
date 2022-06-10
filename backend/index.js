@@ -9,11 +9,13 @@ const authRouter = require('./router/auth.route')
 const userRouter = require('./router/user.route')
 const movieRouter = require('./router/movie.route')
 const listRouter = require('./router/list.route')
+// const proxyMiddlewre = require('./proxySetUp')
 
 // middleware
 app.use(cors())
 app.use(express.json())
-app.use(express.urlencoded({extended: true}))
+app.use(express.urlencoded({ extended: true }))
+// proxyMiddleware(app)
 // routes
 app.use('/api/v1/', authRouter)
 app.use('/api/v1/get/', userRouter)

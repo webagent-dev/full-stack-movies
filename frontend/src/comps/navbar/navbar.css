@@ -30,6 +30,7 @@ transition: all 1s linear;
 }
 .links{
     margin-right: 20px;
+    cursor:pointer;
 }
 .second__part{
     display: flex;

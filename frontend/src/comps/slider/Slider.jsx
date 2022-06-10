@@ -3,7 +3,8 @@ import Movies from '../movie/Movies'
 import Type from '../type/Type'
 import { FaChevronRight, FaChevronLeft } from 'react-icons/fa'
 import './slider.css'
-function Slider( {type }) {
+function Slider({types, data }) {
+  // console.log(data)
   const [slidIndex, setSlidIndex] = useState(0)
   const [move, setMove] = useState(false)
   const  listRef = useRef()
@@ -21,7 +22,7 @@ function Slider( {type }) {
   }
   return (
     <div className='slider__container'>
-         <Type type={type} />
+      <h1 className="type__text">{types}</h1>
         <div className="other__container">
           {
             move &&
@@ -30,16 +31,8 @@ function Slider( {type }) {
           </div>
 }
         <div className="slider__wrapper" ref={listRef}>
-                <Movies index={0} />
-                <Movies index={1} />
-                <Movies index={2} />
-                <Movies index={3} />
-                <Movies index={4}  />
-                <Movies index={5} />
-                <Movies index={6} />
-                <Movies index={7} />
-                <Movies index={8} />
-                <Movies index={9} />
+              <Movies index={0} />
+            
         </div>
         <div className="arrow__container right">
          <FaChevronRight  className="arrow " onClick={() => handleSlide('right')} />
