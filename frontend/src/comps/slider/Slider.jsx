@@ -31,8 +31,8 @@ function Slider({types, data }) {
           </div>
 }
         <div className="slider__wrapper" ref={listRef}>
-              <Movies index={0} />
-            
+          { data.content.map((item, index) => <Movies key={item._id} index={index} id={item} />)
+          }
         </div>
         <div className="arrow__container right">
          <FaChevronRight  className="arrow " onClick={() => handleSlide('right')} />
