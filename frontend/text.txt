@@ -1,0 +1,67 @@
+authActions
+export const loginStart = () => ({
+    type: "Login_Start"
+})
+
+export const loginSuccess = (data) => ({
+    type: "Login_Success",
+    payload:data
+})
+
+export const loginFail = () => ({
+    type: "Login_Fail"
+})
+
+authReducer
+ const AuthReducer = (state, action) => {
+     switch (action.type) {
+         case "Login_Start":
+             return {
+                 isFetching: true,
+                 isData:null,
+                 isError: false
+             }
+         case "Login_Success":
+             return {
+                 isFetching: false,
+                 isData: action.payload,
+                 isError: false
+             }
+         case "Login_Fail":
+             return {
+                 isFetching: false,
+                 isData: null,
+                 isError: true
+             }
+         default:
+             return { ...state}
+    }
+}
+
+export default AuthReducer
+
+
+authContext
+import AuthReducer from './AuthReducer'
+import { createContext, useReducer } from 'react'
+
+const initialState = {
+    isFetching: false,
+    isData: null,
+    isError: false
+}
+
+export const AuthContext = createContext(initialState)
+
+export const AuthContextProvider = ({ children }) => {
+    const [state, dispatch] = useReducer(AuthReducer, initialState)
+    
+    return <AuthContext.Provider
+        value={{
+            dispatch,
+            data: state.isData,
+            fetching: state.isFetching,
+            error: state.isError
+        }}
+    >{children}</AuthContext.Provider>
+}
