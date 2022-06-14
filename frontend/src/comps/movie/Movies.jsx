@@ -15,7 +15,7 @@ function Movies({index, id}) {
          token: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyOTgzNDY3M2JjMjEyNzc0ZGIxYmIwOCIsImlzQWRtaW4iOnRydWUsImlhdCI6MTY1NDgyODkwMiwiZXhwIjoxNjU1MjYwOTAyfQ.Y-8eDfx5lVkNVqw9bocxi9e1hAY4fiKQ3gc-JCPbTl4"
        }
      })
-     console.log(res.data)
+    //  console.log(res.data)
      setListMovies(res.data)
     }
     getSliderList()

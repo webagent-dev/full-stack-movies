@@ -1,22 +1,23 @@
+
 const AuthReducer = (state, action) => {
     switch (action.type) {
         case "Login_Start":
             return {
                 isFetching: true,
                 isData: null,
-                isError: false
+                isError: null
             }
         case "Login_Success":
             return {
                 isFetching: false,
                 isData: action.payload,
-                isError: false
+                isError: null
             }
         case "Login_Fail":
             return {
                 isFetching: false,
                 isData: null,
-                isError: true
+                isError: null
             }
         default:
             return {...state}

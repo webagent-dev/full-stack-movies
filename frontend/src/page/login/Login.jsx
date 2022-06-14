@@ -1,27 +1,45 @@
+import React, { useRef, useState } from 'react'
 import {Link } from 'react-router-dom'
 import './login.css'
-function Register() {
+
+function Login() {
+  const emailRef = useRef(null)
+  const passwordRef = useRef(null) 
+  const [email, setEmail ] = useState(null)
+  const [password, setPassword ] = useState(null)
+  const handleGetStart = () => {
+    setEmail(emailRef.current.value)
+  }
+  const handleStart = () => {
+      setPassword(passwordRef.current.value)
+  }
   return (
-    <div className='login__container'>
+    <div className='register__container'>
         <div className="logo__container">
         <img src="/img/main.png" alt="" className="logo" />
-        <Link to='/login'>
-          <div className="login__btn">Sign In</div>
-          </Link>
+          <button className="login__btn"><Link to='/register' className='color'>Sign Up</Link></button>
         </div>
-        <div className="login__content">
-        <form>
-          <h1>sign up</h1>
-          <input type='email' placeholder='Email or phone number'className='login__input'/>
-          <input type='password' placeholder='Password' className='login__input'/>
-          <button className='login__submit'>sign in</button>
-           <h2>New to Netflix? Sign up now.</h2>
-        <p>This page is protected by Google reCAPTCHA to ensure you're not a bot. <span>Learn more</span></p>
-        </form>
-       
-    </div>
+        <div className="register__content">
+            <h1 className="main__text">Unlimited movie, Tv shows, and more.</h1>
+            <h2 className="small__text">Watch anywhere. Cancel anytime.</h2>
+            <div className="last__text">Ready to watch? Sign-in your to start or Sign-up for  your membership</div>
+            <>
+            {
+              !email ?
+            <div  className="form__control">
+                <input type="email" className="main__input"  ref={emailRef}  placeholder='Email Address'/>
+                <button className="submit__btn"  onClick={handleGetStart}>Get Started</button>
+            </div>
+            :
+            <form  className="form__control">
+                <input type="password" className="main__input"  ref={passwordRef}  placeholder='Password'/>
+                <button className="submit__btn"  type='submit' onclick={handleStart}>Start</button>
+            </form>
+}
+            </>
+        </div>
     </div>
   )
 }
 
-export default Register
+export default Login
